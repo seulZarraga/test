@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Confirmation Expired{% endblock %}
+
+{% block body_block %}
+    
+<div class="container">
+    
+    <div class="row" style="margin-top:20px">
+	<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <hr class="colorgraph">
+            <p>Tu link  ha expirado</p>
+            <small>haz click en el siguiente enlace así podremos mandarte un nuevo link</small>
+             <a href="{% url 'login'%}" class="btn btn-lg btn-success btn-block">Reenviar</a>
+            <hr class="colorgraph">
+        </div>
+    </div>
+</div>
+
+{% endblock %}

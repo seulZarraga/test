@@ -1,0 +1,106 @@
+{% load staticfiles %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>Catalogo de precios CMC México</title>
+        <style type="text/css">
+            body {
+                font-size: 12px;
+            }
+            table, th, td {
+                border: 1px solid black;
+            }
+            td {
+                padding: 0.5em;
+            }
+            hr { 
+                display: block;
+                margin-top: 2em;
+                margin-bottom: 2em;
+                margin-left: auto;
+                margin-right: auto;
+                border-style: inset;
+                border-width: 1px;
+            }
+            .first-line {
+                padding-top: 0.3em;
+            } 
+            .headers {
+                background-color: #e5e5e5;
+            }
+            .nombre-cliente {
+                padding-top: 0.5em;
+            }
+            .parrafo-header{
+                background-color: #e5e5e5;
+                text-align: left;
+            }
+            @page {
+                size: {{ pagesize }};
+                margin: 1cm;
+                @frame footer {
+                    -pdf-frame-content: footerContent;
+                    bottom: 0cm;
+                    margin-left: 9cm;
+                    margin-right: 9cm;
+                    height: 1cm;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <img src="{% static 'images/logo.png' %}" height="70" alt="CMC Logo">
+
+        <div>
+            <table>
+                <tr>
+                    <th class="headers">
+                       <div class="headers">
+                            <p class="parrafo-header first-line">Para uso exclusivo del banco</p>
+                            <p class="parrafo-header">Concentración empresarial de pagos</p>
+                            <p class="parrafo-header">N DE SERVICIOS CEP:116192</p>
+                        </div> 
+                    </th>
+                    <th class="headers">
+                        <div class="headers">
+                            <img src="{% static 'images/logo.png' %}" height="70" alt="Banco Logo">    
+                        </div>
+                    </th>
+                </tr>     
+            </table>
+            <table>
+                <th><p class="nombre-cliente">Nombre del cliente: Fundación Educación Superior-Empresa, A.C.</p></th>
+            </table>
+            <table>
+                <td><p>Nombre Producto</p></td>
+                <td><p>Categoria</p></td>
+                <td><p>Precio</p></td>
+
+            </table>
+            
+            {% for product in products %}
+            <table>
+                <td><p> {{product.product_name}} </p></td>
+                <td><p> {{product.category}} </p></td>
+            {% if distribuidor.tipo == 'distribuidor_bajo' %}
+                <td><p>${{product.low_distr_price}}</p></td>
+            {% elif distribuidor.tipo == 'distribuidor_medio' %}
+                <td><p>${{product.med_distr_price}}</p></td>
+            {% elif distribuidor.tipo == 'distribuidor_alto' %}
+                <td><p>${{product.high_distr_price}}</p></td>
+            {% else %}
+                <td><p>${{product.public_price}}</p></td>
+            {% endif %}
+            </table>
+            {% endfor %}
+            
+           
+               
+        </div>
+
+        
+        <hr>
+
+        
+    </body>
+</html>

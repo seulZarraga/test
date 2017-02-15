@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Mail Confirmed{% endblock %}
+
+{% block body_block %}
+    
+<div class="container">
+    
+    <div class="row" style="margin-top:20px">
+	<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <hr class="colorgraph">
+            <p>Tu cuentas se ha registrado exitosamente.</p>
+            <p>En breve nos pondremos en contacto contigo para que puedas acceder a  tu perfil.</p>
+            <a href="{% url 'home' %}" class="btn btn-lg btn-success btn-block">Regresar</a>
+            <hr class="colorgraph">
+        </div>
+    </div>
+</div>
+
+{% endblock %}

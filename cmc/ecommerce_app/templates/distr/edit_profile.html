@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block body_block %}
+
+<div class="container login-container">
+<h3 class="text-center">Editar perfil.</h3>
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
+                <div class="panel panel-login">
+                    
+                    <div class="panel-body">
+                            
+                                <form id="edit_profile_form" action="{% url 'distribuidor:edit_profile' user.pk %}" method="post" role="form">
+                                 {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                           
+                                            <label>Nombre:<span class="campo_obligatorio_alert">*</span></label>
+                                            <input type="text" tabindex="1" name="first_name" id="first_name" class="form-control input-lg" placeholder="" value="{{distribuidor.user.first_name}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            
+                                            <label>Apellido Paterno:<span class="campo_obligatorio_alert">*</span></label>
+                                            <input type="text" tabindex="2" name="last_name" id="last_name" class="form-control input-lg" placeholder="" value="{{distribuidor.user.last_name}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            
+                                            <label>Apellido Materno:<span class="campo_obligatorio_alert">*</span></label>
+                                            <input type="text" tabindex="3" name="second_last_name" id="second_last_name" class="form-control input-lg" placeholder="" value="{{distribuidor.user.second_last_name}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            
+                                            <label>Empresa o Compañia:<span class="campo_obligatorio_alert">*</span></label>
+                                            <input type="text" tabindex="4" name="nombre_empresa" id="nombre_empresa" class="form-control input-lg" placeholder="" value="{{distribuidor.nombre_empresa}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                           
+                                            <label>Correo Electronico:<span class="campo_obligatorio_alert">*</span></label>
+                                            <input type="email" tabindex="5" name="email" id="email" class="form-control input-lg" placeholder="" value="{{distribuidor.user.email}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            
+                                            <label>Telefono:<span class="campo_obligatorio_alert">*</span></label>
+                                            <input type="text" tabindex="6" name="telephone" id="telephone" class="form-control input-lg" placeholder="" value="{{distribuidor.user.telephone}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            {{user_form.first_name.errors}}
+                                            <label>Calle:<span class="campo_obligatorio_alert">*</span></label>
+                                            <input type="text" tabindex="7" name="direccion_calle" id="direccion_calle" class="form-control input-lg" placeholder="" value="{{distribuidor.direccion_calle}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            {{user_form.first_name.errors}}
+                                            <label>Colonia:<span class="campo_obligatorio_alert">*</span></label>
+                                            <input type="text" tabindex="8" name="direccion_colonia" id="direccion_colonia" class="form-control input-lg" placeholder="" value="{{distribuidor.direccion_colonia}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            {{user_form.first_name.errors}}
+                                            <label>Delegación o Municipio:<span class="campo_obligatorio_alert">*</span></label>
+                                            <input type="text" tabindex="9" name="direccion_delegacion" id="direccion_delegacion" class="form-control input-lg" placeholder="" value="{{distribuidor.direccion_delegacion}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            {{user_form.first_name.errors}}
+                                            <label>Codigo Postal:<span class="campo_obligatorio_alert">*</span></label>
+                                            <input type="text" tabindex="10" name="direccion_cp" id="direccion_cp" class="form-control input-lg" placeholder="" value="{{distribuidor.direccion_cp}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <select class="form-control" id="direccion_estado" name="direccion_estado" required tabindex="11">
+                                          {% for state in states %}
+                                          <option value="{{ state.pk }}" {%if state == distribuidor.direccion_estado %} selected {% endif %}>{{ state }}</option>
+                                          {% endfor %}
+                                        </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <input type="submit" name="register-submit" id="register-submit" tabindex="12" class="form-control btn btn-register" value="Guardar">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Link Sent{% endblock %}
+
+{% block body_block %}
+    
+<div class="container">
+    
+    <div class="row" style="margin-top:20px">
+	<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <hr class="colorgraph">
+            <p>El link se ha enviado exitosamente, Porfavor revisa tu mail.</p>
+            <small>No te olvides de revisar tu SPAM</small>
+            <a href="{{ login_url }}" class="btn btn-lg btn-success btn-block">Ir a Perfil</a>
+            <hr class="colorgraph">
+        </div>
+    </div>
+</div>
+
+{% endblock %}

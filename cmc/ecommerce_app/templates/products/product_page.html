@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %} Profile {% endblock %}
+
+{% block body_block %}
+
+<div class="container login-container">
+      <div class="row" id="item-container" style="display: block; bottom: 0px;">
+          <section>
+              <div id="item-detail">
+                  <h1>{{product.product_name}}</h1>
+                  <div class="col-lg-8 col-md-8 col-sm-8" align="left">
+                      <div class="sp-wrap" style="display:inline-block;">
+                          <div class="sp-large">
+                              <a href="{{product.product_image_url}}" class="sp-current-big">
+                                  <img src="{{product.product_image_url}}" alt="">
+                              </a>
+                          </div>
+                      </div>
+                      <div class="description">
+                          <h4>Descripción</h4>
+                          <p class="des">{{product.description}}</p>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-4">
+                      <section>
+                          <div class="options">
+                              <p class="precio" style="padding-bottom:0;padding-top:0">
+                                  ${{product.public_price}}
+                              </p>
+                              <button class="btn btn-primary btn-lg" style="margin-top:30px;margin-bottom:10px; width: 100%;">Comprar</button>
+                          </div>
+                      </section>
+                  </div>
+              </div>
+          </section>
+      </div>
+    </div>
+
+
+
+{% endblock %}

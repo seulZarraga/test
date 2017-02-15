@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %} Profile {% endblock %}
+
+{% block body_block %}
+
+<div class="container login-container">
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+   
+   
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{distribuidor.user.first_name}} {{distribuidor.user.last_name}} {{distribuidor.user.second_last_name}}</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                
+                
+
+                <div class=" col-md-12 col-lg-12 "> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Correo Electronico</td>
+                        <td>{{ distribuidor.user.email }}</td>
+                      </tr>
+                      <tr>
+                        <td>Empresa o Compañia</td>
+                        <td>{{ distribuidor.nombre_empresa }}</td>
+                      </tr>
+                      <tr>
+                        <td>Telefono</td>
+                        <td>{{ distribuidor.user.telephone }}</td>
+                      </tr>
+                      
+                       <tr>
+                        <td>Calle</td>
+                        <td>{{ distribuidor.direccion_calle }}</td>
+                      </tr>
+                      <tr>
+                        <td>Colonia</td>
+                        <td>{{ distribuidor.direccion_colonia }}</td>
+                      </tr>
+                      <tr>
+                        <td>Delegación o municipio</td>
+                        <td>{{ distribuidor.direccion_delegacion }}</td>
+                      </tr>
+                      <tr>
+                        <td>Estado</td>
+                        <td>{{ distribuidor.direccion_estado }}</td>
+                      </tr>
+                      <tr>
+                        <td>Codigo Postal</td>
+                        <td>{{ distribuidor.direccion_cp }}</td>
+                      </tr>
+                      <tr><td></td><td></td></tr> 
+                    </tbody>
+                  </table>
+                  <div class="pull-right"> 
+                      <a href="{% url 'distribuidor:edit_profile' user.pk %}" data-original-title="Editar perfil" data-toggle="tooltip" class="btn btn-warning">Editar Perfil</a>
+                      <a id="descargar_catalogo" name="descargar_catalogo" href="{% url 'distribuidor:download_prices' user.pk %}" class="btn btn-primary" target="blank">Descargar Catalogo</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+                 <div class="panel-footer"></div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+{% endblock %}

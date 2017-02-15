@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Conectando esfuerzos para crear valor{% endblock %}
+
+{% block body_block %}
+
+       <!-- banner -->
+        <div class="banner" style="background-image: url({% static 'images/banner_home.jpg' %}) ">
+            <div class="transparent-background">
+                <div class="container">
+                    <section class="section-banner">
+                        <h2 class="subtitle-bold">En CMC contamos con una amplia gama de productos 100% naturales para cuidar tu salud, fabricados en México con los más altos estándares de calidad </h2>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+<!-- banner -->
+       
+    <div class="container"> <!-- carousel-->
+    <div class="row">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-9">
+                <h3>
+                    GIRARCAMPS</h3>
+            </div>
+            
+        </div>
+        <div id="carousel-example" class="carousel slide " data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="row">
+                    {% for product in girarcamps  %}
+                        <div class="col-xs-12 col-sm-12 col-md-3">
+                            <div class="col-item columna-item">
+                                <div class="photo">
+                                    <a href="{%url 'products:product_page' product.id product.slug %}">
+                                    <img src={{product.product_image_url}} class="img-responsive" alt=" {{product.product_name}} " /></a>
+                                </div>
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="price col-xs-12 col-sm-12 col-md-12">
+                                            <h5 class="text-center">{{product.product_name}}</h5>
+                                            <h5 class="price-text-color text-center">
+                                                ${{product.public_price}}</h5>
+                                        </div>
+                                    </div>
+                                    <div class=" row separator clear-left">
+                                        <div class="price col-xs-12 col-sm-12 col-md-12">
+                                        <p ><i class="fa fa-list"></i><a href="{%url 'products:product_page' product.id product.slug %}" class="hidden-sm">Mas información</a></p>
+                                    </div>
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %} 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container"> <!-- carousel-->
+    <div class="row">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-9">
+                <h3>
+                    HERBOMEX</h3>
+            </div>
+            
+        </div>
+        <div id="carousel-example" class="carousel slide " data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="row">
+                    {% for product in herbomex  %}
+                        <div class="col-xs-12 col-sm-12 col-md-3">
+                            <div class="col-item columna-item">
+                                <div class="photo">
+                                    <a href="{%url 'products:product_page' product.id product.slug %}">
+                                    <img src={{product.product_image_url}} class="img-responsive" alt=" {{product.product_name}} " /></a>
+                                </div>
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="price col-xs-12 col-sm-12 col-md-12">
+                                            <h5 class="text-center">{{product.product_name}}</h5>
+                                            <h5 class="price-text-color text-center">
+                                                ${{product.public_price}}</h5>
+                                        </div>
+                                    </div>
+                                    <div class=" row separator clear-left">
+                                    <div class="price col-xs-12 col-sm-12 col-md-12">
+                                        <p >
+                                        <i class="fa fa-list"></i><a href="{%url 'products:product_page' product.id product.slug %}" class="hidden-sm">Mas información</a></p>
+                                    </div>
+                                        
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %} 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+       <!-- container catalaogo-camione -->
+    <div id="contact" class="container">
+        <div class="row content-index-2">
+         <div class="col-xs-12 col-sm-6 col-md-6 hidden-xs">
+            <section>
+            <figure class="width_full"><img src="{% static 'images/camioneta.png' %}" class="full-width-img"></figure>
+                 
+            </section>
+         </div>
+         
+         <div class="col-xs-12 col-sm-6 col-md-6">
+            <section class="form-contact width_full ">
+                 <article>
+                <h2 class="subtitle-bold">Contacto</h2>
+                <p class="text-light">Para nosotros es muy importane estar en contacto contigo.</p>
+                <form role="form" method="post" id="contact_form" action="{% url 'send_contact_email' %}" class="width_full">
+                {% csrf_token %}
+                    <label class="width_full">Nombre:</label>
+                    <input name="name" id="name" type="text" class="width_full border_form padding-form " placeholder="Insertar Nombre" tabindex="1">
+
+                    <label class="width_full">Apellido:</label>
+                    <input name="last_name" id="last_name" type="text" class="width_full border_form padding-form"  placeholder="Insertar Apellido" tabindex="2">
+
+                    <label class="width_full">Correo Electronico:</label>
+                    <input name="email" id="email" type="text" class="width_full border_form padding-form"  placeholder="Insertar Correo Electronico" tabindex="3">
+
+                    <label class="width_full">Mensaje:</label>
+                    <textarea id="message" name="message" class="width_full border_form padding-form"  placeholder="Insertar Mensaje:" tabindex="4"></textarea>
+                    <input type="submit" value="Enviar" class="width_full submit border_form padding-form" tabindex="5">
+
+                </form>
+                 </article>
+            </section>
+
+          </div>
+
+
+        </div>
+    
+    </div>
+
+<!--fin  container catalaogo-camione -->
+
+{% endblock %}
