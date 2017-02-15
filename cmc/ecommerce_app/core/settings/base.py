@@ -21,7 +21,7 @@ MEDIA_PATH = os.path.join(BASE_DIR, 'media')
 # Email Settings
 
 EMAIL_BACKEND = "sgbackend.SendGridBackend"
-SENDGRID_API_KEY = "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"
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
