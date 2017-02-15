@@ -134,7 +134,7 @@ $(function () {
                             '<div class="col-xs-12 col-sm-4 col-md-4" style="margin-bottom:20px;">' +
                             '<div class="col-item">' +
                             '<div class="photo">' +
-                            '<a href=""><img src="'+data.product_image_url+'" class="img-responsive" alt="product image" onmouseover="this.src=\'' + data.product_image_url + '\';" onmouseout="this.src=\'' + data.product_image_url + '\';" />' + badge + '</a>' +
+                            '<a href="'+data.product_url+'"><img src="'+data.product_image_url+'" class="img-responsive" alt="product image" onmouseover="this.src=\'' + data.product_image_url + '\';" onmouseout="this.src=\'' + data.product_image_url + '\';" />' + badge + '</a>' +
                             '</div>' +
                             '<div class="info text-center">' +
                             '<div class="row">' +

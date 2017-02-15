@@ -10,6 +10,7 @@ class ProductIndex(AlgoliaIndex):
               'category',
               'buy_link',
               'image',
+              'product_url',
               'product_image_url')
 
     settings = {

@@ -13,7 +13,5 @@ def product_page(request, product_id, slug):
 
     product = get_object_or_404(Product, pk=product_id)
 
-    print 'PRODUCT', product.product_name
-
     return render_to_response('products/product_page.html',
                               {'product': product}, context)
