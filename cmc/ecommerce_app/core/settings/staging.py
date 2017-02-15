@@ -39,13 +39,18 @@ X_FRAME_OPTIONS = 'DENY'
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/media/'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+
+AWS_S3_FILE_OVERWRITE = False
+
+MEDIA_BUCKET_NAME = 'comercializadora'
+
+MEDIA_URL = "https://%s.s3.amazonaws.com/" % MEDIA_BUCKET_NAME
 
 DEFAULT_FILE_STORAGE = 'core.custom_storages.MediaS3BotoStorage'
 
 MEDIA_ROOT = MEDIA_PATH
-
-
 
 # Database settings
 
