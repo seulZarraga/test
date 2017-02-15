@@ -44,7 +44,7 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
 AWS_S3_FILE_OVERWRITE = False
 
-MEDIA_BUCKET_NAME = 'comercializadora'
+MEDIA_BUCKET_NAME = 'cmcmexico'
 
 MEDIA_URL = "https://%s.s3.amazonaws.com/" % MEDIA_BUCKET_NAME
 
