@@ -119,6 +119,17 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_compressed')
 
+# see http://developer.yahoo.com/performance/rules.html#expires
+AWS_HEADERS = {
+    'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+    'Cache-Control': 'max-age=94608000',
+    'Vary': 'Accept-Encoding',
+}
+
+AWS_QUERYSTRING_AUTH = False
+
+AWS_IS_GZIPPED = True
+
 GZIP_CONTENT_TYPES = (
     'text/css',
     'application/javascript',
