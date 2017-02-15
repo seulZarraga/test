@@ -210,7 +210,8 @@ def register(request):
 
                 register_user_mail(request, distribuidor)
 
-                return render_to_response('core/register_success.html')
+                return render_to_response('core/register_success.html',
+                                          {'pageType': 'Registro Exitoso'})
 
             except Exception as e:
                 print e
@@ -390,6 +391,7 @@ def password_reset(request, is_admin_site=False,
         form = password_reset_form()
     context = {
         'form': form,
+        'pageType': 'Reset Form',
         'title': _('Password reset'),
     }
     if extra_context is not None:
@@ -441,6 +443,7 @@ def password_reset_confirm(request, uidb64=None, token=None,
         'form': form,
         'title': title,
         'validlink': validlink,
+        'pageType': 'Reset Complete',
     }
     if extra_context is not None:
         context.update(extra_context)

@@ -113,6 +113,7 @@ class CustomPasswordResetForm(forms.Form):
             token = token_generator.make_token(user)
 
             reset_url = "https://" + domain + (reverse('core.views.password_reset_confirm', kwargs={'uidb64': uid, 'token': token}))
+
             sg = sendgrid.SendGridClient(settings.SENDGRID_API_KEY)
             message = sendgrid.Mail()
             message.add_to(str(user.get_full_name()) + ' <' + user.email + '>')

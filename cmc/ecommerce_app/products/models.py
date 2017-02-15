@@ -4,6 +4,7 @@ from django.db import models
 import os
 from django.conf import settings
 from slugify import slugify
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 
@@ -38,6 +39,11 @@ class Product(models.Model):
     def can_index(self):
         can_index = self.available is True
         return can_index
+
+    @property
+    def product_url(self):
+
+        return reverse('products:product_page', args=(str(self.pk), str(self.slug),))
 
     @property
     def product_image_url(self):

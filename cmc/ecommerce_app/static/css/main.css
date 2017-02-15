@@ -1013,6 +1013,18 @@ font-size: 20px;
     font-size: 40px;
 }
 
+/* botones de perfil de distribuidor*/
+
+.btn-editar {
+    background-color: #17c0a4;
+    border-color: #17c0a4;
+}
+
+.btn-success {
+    background-color: #17c0a4 !important;
+    border-color: #17c0a4 !important;
+}
+
 /*==================================================
 =            Bootstrap 3 Media Queries             =
 ==================================================*/
