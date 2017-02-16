@@ -35,7 +35,7 @@ from products.models import Product, Category
 from distribuidor.models import Distribuidor
 from core.models import CustomUser
 from core.forms import UserForm
-from cities_light.models import Country, Region
+from localidad.models import Estado
 from distribuidor.forms import DistribuidorForm
 from core.forms import CustomPasswordResetForm, CustomSetPasswordForm
 from django.template.loader import get_template
@@ -199,16 +199,14 @@ def register(request):
                 user.key_expires = key_expires
                 user.save()
                 distribuidor = Distribuidor(user=user)
-                print distribuidor
                 distribuidor.nombre_empresa = distribuidor_form.cleaned_data['nombre_empresa']
-                distribuidor.direccion_estado = Region.objects.get(pk=distribuidor_form.cleaned_data['direccion_estado'])
+                distribuidor.direccion_estado = Estado.objects.get(pk=distribuidor_form.data.get('direccion_estado'))
                 distribuidor.direccion_cp = distribuidor_form.cleaned_data['direccion_cp']
                 distribuidor.save()
 
-                send_welcome_email('https://' + request.get_host() + reverse(
-                                   'confirm', kwargs={'activation_key': activation_key}), distribuidor)
+                # send_welcome_email('https://' + request.get_host() + reverse('confirm', kwargs={'activation_key': activation_key}), distribuidor)
 
-                register_user_mail(request, distribuidor)
+                # register_user_mail(request, distribuidor)
 
                 return render_to_response('core/register_success.html',
                                           {'pageType': 'Registro Exitoso'})
@@ -233,14 +231,13 @@ def register(request):
     else:
         user_form = UserForm()
 
-    country = Country.objects.get(name='Mexico')
-    states = Region.objects.filter(country__id=158)
+    states = Estado.objects.all()
 
     return render_to_response(
         'login.html',
         {'user_form': user_form,
-         "pageType": "Login Page",
-         'states': states}, context
+         'states': states,
+         "pageType": "Login Page", }, context
     )
 
 
@@ -248,7 +245,7 @@ def register(request):
 def user_login(request):
     context = RequestContext(request)
 
-    states = Region.objects.filter(country__id=158)
+    states = Estado.objects.all()
 
     if request.user.is_authenticated():
 
@@ -312,11 +309,10 @@ def user_login(request):
                                    },
                                   context)
 
-    country = Country.objects.get(name='Mexico')
-    states = Region.objects.filter(country__id=158)
+    states = Estado.objects.all()
     return render_to_response('login.html',
-                             {'pageType': 'Login Page',
-                              'states': states, }, context)
+                              {'pageType': 'Login Page',
+                               'states': states}, context)
 
 
 @login_required

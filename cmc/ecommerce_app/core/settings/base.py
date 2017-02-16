@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'core',
     'products',
     'distribuidor',
+    'localidad',
 ]
 
 MIDDLEWARE_CLASSES = [
