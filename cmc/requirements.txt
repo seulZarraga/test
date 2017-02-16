@@ -10,7 +10,7 @@ cffi==1.7.0
 cryptography==1.4
 dj-database-url==0.4.1
 django-autoslug==1.9.3
-django-cities-light==3.3.0
+
 django-debug-toolbar==1.4
 django-extensions==1.7.1
 
