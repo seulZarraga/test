@@ -1,3 +1,4 @@
+# coding=utf-8
 from django.shortcuts import render, render_to_response, get_object_or_404
 
 from distribuidor.models import Distribuidor
@@ -18,7 +19,7 @@ from core.models import CustomUser
 
 from distribuidor.forms import DistribuidorForm
 
-from cities_light.models import Country, Region
+from localidad.models import Estado
 
 from core.forms import UserForm
 
@@ -51,10 +52,7 @@ def edit_profile(request, user_id):
 
     distribuidor = get_object_or_404(Distribuidor, user=get_object_or_404(CustomUser, pk=user_id))
 
-    country = Country.objects.get(name='Mexico')
-    print country.pk
-
-    states = Region.objects.filter(country__id=158)
+    states = Estado.objects.all()
 
     if diff_user(request, distribuidor.user.pk):
         return HttpResponseRedirect(reverse('login'))
@@ -77,7 +75,7 @@ def edit_profile(request, user_id):
 
             distribuidor.nombre_empresa = distribuidor_form.cleaned_data['nombre_empresa']
 
-            distribuidor.direccion_estado = Region.objects.get(pk=distribuidor_form.cleaned_data['direccion_estado'])
+            distribuidor.direccion_estado = Estado.objects.get(pk=distribuidor_form.data.get('direccion_estado'))
 
             distribuidor.direccion_calle = distribuidor_form.cleaned_data['direccion_calle']
 

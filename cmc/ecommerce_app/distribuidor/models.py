@@ -1,3 +1,4 @@
+# coding=utf-8
 from __future__ import unicode_literals
 
 from django.db import models
@@ -16,8 +17,8 @@ class Distribuidor(models.Model):
     nombre_empresa = models.CharField(max_length=255, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
-    direccion_estado = models.ForeignKey('cities_light.Region', blank=True, null=True, related_name='state')
-    direccion_pais = models.ForeignKey('cities_light.Country', blank=True, null=True, related_name='country')
+    direccion_estado = models.ForeignKey('localidad.Estado', blank=True, null=True)
+    direccion_pais = models.ForeignKey('localidad.Pais', blank=True, null=True)
     direccion_calle = models.CharField(max_length=255, blank=True)
     direccion_colonia = models.CharField(max_length=255, blank=True)
     direccion_delegacion = models.CharField(max_length=255, blank=True)
