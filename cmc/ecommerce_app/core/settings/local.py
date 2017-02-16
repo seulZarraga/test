@@ -14,7 +14,7 @@ import getpass
 from .base import *
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'glo00208a7v+ww*qc=dfmu!=lur76se*)b2rtsnkxc_n9^2c18'
+SECRET_KEY = os.environ.get('SENDGRID_API_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -48,17 +48,8 @@ DATABASES = {
 }
 
 ALGOLIA = {
-    'APPLICATION_ID': 'CIOFIUHQVQ',
-    'API_KEY': '0a64dadab47281bc86f846551a9e4284',
-    'INDEX_PREFIX': 'local_'+getpass.getuser(),
-    'SEARCH_KEY': '6d2b7726c13f6a39a64f576047edae70',
+    'APPLICATION_ID': os.environ.get('APPLICATION_ID'),
+    'API_KEY': os.environ.get('API_KEY'),
+    'INDEX_PREFIX': 'local_' + getpass.getuser(),
+    'SEARCH_KEY': os.environ.get('SEARCH_KEY'),
 }
-
-PAYPAL_TEST = True
-
-PAYPAL_CALLBACK_HTTPS = False
-
-PAYPAL_API_ID = "AQUc68f9ipF7h3h-IkjDTjR70TZSPDMOgvNeBs_ja07-cjdyuJGo5PW2yA3rHTkvaEyLCBN3hvaWXWoS"
-PAYPAL_API_SECRET = "EPqi1Pw0aFAAcDk3H59Cp8NHWKiRgrb1l7ocGewnsOaGq5Xw9RizVZgU_YWD7m_O5Xc23UnPbt4pg0vt"
-
-PAYPAL_NOTIFY_URL = PAYPAL_RETURN_URL = "https://e1b75595.ngrok.io/success/"

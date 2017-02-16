@@ -59,9 +59,9 @@ DATABASES['default'] = dj_database_url.config()
 # Algolia settings
 
 ALGOLIA = {
-    'APPLICATION_ID': 'WJMK4HGJBF',
-    'API_KEY': '587bd18cf37155b410903fa3e4e0734c',
-    'SEARCH_KEY': '8ff28a1282bcafcbd392488a07e94a2c',
+    'APPLICATION_ID': os.environ.get('APPLICATION_ID'),
+    'API_KEY': os.environ.get('API_KEY'),
+    'SEARCH_KEY': os.environ.get('SEARCH_KEY'),
     'INDEX_PREFIX': 'staging',
 }
 
