@@ -842,10 +842,7 @@ margin: 15px 0;
     border: none !important;
 }
 
-.select2-container {
-    width: 537.78px !important;
-    height: 45px !important;
-}
+
 
 /*Password styles*/
 
@@ -1006,11 +1003,76 @@ font-size: 20px;
 =               Product Page                       =
 ==================================================*/
 
+#item-detail{
+    display: inline-block;
+    position: inherit;
+    width: 100%;
+    background: #FFFFFF;
+    padding: 10px 20px;
+    color: #333;
+}
+
+#item-detail .title {
+    font-family: Helvetica Narrow, sans-serif;
+    margin: 22px 0px;
+    font-weight: 200;
+    font-size: 40px;
+    padding: 0;
+    color: #355986;
+}
+
+#item-detail .description {
+    margin-bottom: 25px;
+}
+
 #item-detail .precio {
     text-align: center;
     color: #490052;
     font-weight: 200;
     font-size: 40px;
+}
+
+.sp-wrap {
+    
+    line-height: 0;
+    font-size: 0;
+    position: relative;
+    margin: 0;
+    max-width: 635px;
+    width: 100%;
+}
+
+.sp-large {
+    position: relative;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+}
+
+.sp-large a {
+    display: inline-block;
+}
+
+.sp-large a img {
+    width: 100%;
+    height: auto;
+}
+
+.options {
+    border-bottom: 2px dotted #b4b4b4;
+    padding-bottom: 20px;
+    color: #b4b4b4;
+}
+
+.options {
+    border-bottom: 2px dotted #b4b4b4;
+    padding-bottom: 20px;
+    color: #b4b4b4;
+}
+
+.at-expanding-share-button.at-expanding-share-button-desktop .at-expanding-share-button-toggle-bg {
+
+    display: none;
 }
 
 /* botones de perfil de distribuidor*/
@@ -1029,40 +1091,18 @@ font-size: 20px;
 =            Bootstrap 3 Media Queries             =
 ==================================================*/
 
+    @media only screen and (max-width : 767px){
 
+        /*========== Accordion Menu =================*/
 
+        .glyphicon { margin-right:10px; }
+        .panel-body { padding:0px; }
+        .panel-body table tr td { padding-left: 15px }
+        .panel-body .table {margin-bottom: 0px; }
 
-    /*==========  Mobile First Method  ==========*/
+        .titulo-carrusel {
 
-    /* Custom, iPhone Retina */ 
-    @media only screen and (min-width : 320px) {
-
-        
+            margin-left: 1em;
         }
-        
-    }
-
-    /* Extra Small Devices, Phones */ 
-    @media only screen and (min-width : 480px) {
-
-       
 
     }
-
-    /* Small Devices, Tablets */
-    @media only screen and (min-width : 768px) {
-
-
-
-    }
-
-    /* Medium Devices, Desktops */
-    @media only screen and (min-width : 992px) {
-
-    }
-
-    /* Large Devices, Wide Screens */
-    @media only screen and (min-width : 1200px) {
-
-    }
-
