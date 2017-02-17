@@ -19,7 +19,7 @@
        
     <div class="container"> <!-- carousel-->
     <div class="row">
-        <div class="row">
+        <div class="row titulo-carrusel">
             <div class="col-xs-12 col-sm-12 col-md-9">
                 <h3>
                     GIRARCAMPS</h3>
@@ -32,7 +32,7 @@
                 <div class="item active">
                     <div class="row">
                     {% for product in girarcamps  %}
-                        <div class="col-xs-12 col-sm-12 col-md-3">
+                        <div class="col-xs-8 col-xs-offset-2 col-md-3">
                             <div class="col-item columna-item">
                                 <div class="photo">
                                     <a href="{%url 'products:product_page' product.id product.slug %}">
@@ -78,7 +78,7 @@
                 <div class="item active">
                     <div class="row">
                     {% for product in herbomex  %}
-                        <div class="col-xs-12 col-sm-12 col-md-3">
+                        <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-md-3">
                             <div class="col-item columna-item">
                                 <div class="photo">
                                     <a href="{%url 'products:product_page' product.id product.slug %}">

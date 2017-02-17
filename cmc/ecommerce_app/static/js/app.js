@@ -217,9 +217,9 @@ $('#edit_profile_form').formValidation({
 
 
 
-$(document).ready(function() {
-  $("select").select2();
-});
+// $(document).ready(function() {
+//   $("select").select2();
+// });
 
 $('.upload').on('change', function(){
     var valor = this.value
