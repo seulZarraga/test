@@ -34,7 +34,7 @@ a{
 }
 
 a:hover{
-    color: #c3187a;
+    color: #01bcd4;
 }
 
 .label-primary{
@@ -871,6 +871,7 @@ margin: 15px 0;
 }
 .text-light{
     font-weight: 400;
+    font-size: large;
 }
 
 .width_full{
@@ -880,6 +881,13 @@ margin: 15px 0;
 .full-width-img{
     width: 100%;
     height: 100%;
+}
+
+.text-white{
+    color: white;
+}
+.font-small{
+    font-size: 12px;
 }
 
 /* form */
@@ -1087,11 +1095,24 @@ font-size: 20px;
     border-color: #17c0a4 !important;
 }
 
+.a-navbar {
+
+    font-weight: 400;
+    font-size: large;
+}
+
+.title-alone em{
+    font-style: normal;
+    font-weight: 400;
+    color: #1F3B5D;
+    background-color: #dbeff8;
+}
+
 /*==================================================
 =            Bootstrap 3 Media Queries             =
 ==================================================*/
 
-    @media only screen and (max-width : 767px){
+    @media only screen and (max-width : 769px){
 
         /*========== Accordion Menu =================*/
 
@@ -1103,6 +1124,25 @@ font-size: 20px;
         .titulo-carrusel {
 
             margin-left: 1em;
+        }
+
+        .nav-header-small {
+            display: inline-block;
+            
+        }
+        .logo-home img {
+            height: 45px;
+        }
+
+        .search-small-screen {
+        display: inline-block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 250px !important;
+        }
+
+        .queries {
+            display: block !important;
         }
 
     }
