@@ -19,7 +19,7 @@ class ProductIndex(AlgoliaIndex):
         # "customRanking": ["desc(inscritos)", "desc(visitas)"],
         "ignorePlurals": True,
         "removeStopWords": True,
-        "hitsPerPage": 8,
+        "hitsPerPage": 12,
         "unretrievableAttributes": ["visits"]}
 
     should_index = 'can_index'

@@ -11,6 +11,11 @@
     {% if request.META.HTTP_HOST != 'localhost:8000'%}
     var CKEDITOR_BASEPATH = "{% static "js/ckeditor" %}{% if IS_AMAZON %}/{% endif %}"
     {% endif %}
+
+    var ALGOLIA_APPLICATION_ID = '{{ ALGOLIA_APPLICATION_ID }}';
+    var ALGOLIA_SEARCH_KEY = '{{ ALGOLIA_SEARCH_KEY }}';
+    var ALGOLIA_INDEX = '{{ ALGOLIA_INDEX }}' + '_Product';
+
     {% if 'Catalog Page' in pageType %}
 
     var ALGOLIA_APPLICATION_ID = '{{ ALGOLIA_APPLICATION_ID }}';
