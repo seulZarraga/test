@@ -26,7 +26,7 @@ $(function () {
 
         searching.addWidget(
             instantsearch.widgets.searchBox({
-                container: '.id_q'
+                container: '#id_q'
             })
         );
 
