@@ -1141,4 +1141,8 @@ font-size: 20px;
         width: 250px !important;
         }
 
+        .queries {
+            display: block !important;
+        }
+
     }
