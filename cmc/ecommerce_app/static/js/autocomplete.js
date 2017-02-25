@@ -3,6 +3,9 @@
           var idx = client.initIndex(ALGOLIA_INDEX);
           
           function searchCallback(err, content) {
+              if (content.query != $("#search_small").val())
+                  return;
+              console.log(content.hits.length)
               if (content.hits.length == 0) {
                 $('.queries').hide();
                 return;
@@ -48,15 +51,11 @@
 
           
           $(document).ready(function() {
-            var inputfield_small = $('#search_small');
-            var inputfield = $('#id_q');
-
-            inputfield_small.keyup(function() {
-                search(inputfield_small.val());
-            });
+            var inputfield = $('#search_small');
 
             inputfield.keyup(function() {
                 search(inputfield.val());
+                console.log(inputfield.val());
             });
           });
 

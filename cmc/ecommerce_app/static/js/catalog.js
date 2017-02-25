@@ -17,21 +17,20 @@ $(function () {
 
     // ALGOLIA
     if (dataLayer[0].pageType.indexOf("Catalog Page") > -1) {
-        var search = instantsearch({
+        var searching = instantsearch({
             appId: ALGOLIA_APPLICATION_ID,
             apiKey: ALGOLIA_SEARCH_KEY,
             indexName: ALGOLIA_INDEX ,
             urlSync: true
         });
 
-
-        search.addWidget(
+        searching.addWidget(
             instantsearch.widgets.searchBox({
-                container: '#id_q'
+                container: '.id_q'
             })
         );
 
-        search.addWidget(
+        searching.addWidget(
             instantsearch.widgets.pagination({
                 container: '.pagination',
                 scrollTo: '#hits',
@@ -51,15 +50,17 @@ $(function () {
             })
         );
 
-
-        search.addWidget(
-            instantsearch.widgets.refinementList({
+        searching.addWidget(
+            instantsearch.widgets.hierarchicalMenu({
                 container: '#category',
-                attributeName: 'category',
-                operator: 'or',
+                attributes: ['category'],
+                sortBy: ['name:asc'],
                 templates: {
                     item: function (data) {
+
                         checked = ""
+
+                        //return '<a href="" style="margin-left: 20px;font-weight: bold">' + data.name + '</a>'
 
                         if (data.isRefined)
                             checked = "checked"
@@ -76,7 +77,7 @@ $(function () {
         var noResultsTemplate = '<h4 class="text-center" style="margin-top: 40px;">We are sorry, we couldn\'t find any product that matches <i>\'{{query}}\'</i></h4>';
 
 
-        search.addWidget(
+        searching.addWidget(
             instantsearch.widgets.hits({
                 container: '#hits',
                 hitsPerPage: 12,
@@ -157,7 +158,7 @@ $(function () {
         );
 
 
-        search.addWidget(
+        searching.addWidget(
           instantsearch.widgets.clearAll({
             container: '#clear-all',
             templates: {
@@ -171,12 +172,12 @@ $(function () {
         );
 
 
-        search.start()
+        searching.start()
 
 
         var onRenderHandler2 = function() {
 
-            pages = parseInt(search.helper.lastResults.nbPages)
+            pages = parseInt(searching.helper.lastResults.nbPages)
 
             if(pages > 1){
 
@@ -188,49 +189,18 @@ $(function () {
 
         };
 
-        search.on('render', onRenderHandler2);
+        searching.on('render', onRenderHandler2);
 
 
 
         onRenderHandler = function() {
 
 
-
-            var hits = search.helper.lastResults.hits.length
-
-            var more_prods_element = $('#more-prods')
-
-            if(hits<12 && more_prods_element.length == 0){
-
-                var product_template =
-                                '<div id="more-prods" class="col-xs-12 col-sm-4 col-md-4" style="margin-bottom:20px;">' +
-                                '<div class="col-item">' +
-                                '<div class="photo">' +
-                                '<img src="' + MORE_SOON + '" class="img-responsive" alt="product image"/></a>' +
-                                '</div>' +
-                                '<div class="info text-center">' +
-                                '<div class="row">' +
-                                '<div class="price">' +
-                                '<h5>More Products Coming Soon</h5>' +
-                                '</div>' +
-                                '</div>' +
-                                '</div>' +
-                                '</div>' +
-                                '</div>'
-
-
-                $('.ais-hits').append(product_template)
-
-            }
-
-            if(hits==12 && more_prods_element.length != 0){
-                $('#more-prods').remove()
-            }
-
         };
 
-        search.on('render', onRenderHandler)
+        searching.once('render', onRenderHandler);
 
     } //end if algolia
-});
 
+
+});

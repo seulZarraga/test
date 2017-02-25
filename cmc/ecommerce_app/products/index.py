@@ -16,6 +16,7 @@ class ProductIndex(AlgoliaIndex):
     settings = {
         "attributesForFaceting": ['category', ],
         "attributesToIndex": ["product_name", "category", 'get_seller.nombre'],
+        # "customRanking": ["desc(inscritos)", "desc(visitas)"],
         "ignorePlurals": True,
         "removeStopWords": True,
         "hitsPerPage": 12,
