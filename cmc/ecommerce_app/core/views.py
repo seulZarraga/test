@@ -238,7 +238,7 @@ def register(request):
     )
 
 
-@csrf_protect
+ 
 def user_login(request):
     context = RequestContext(request)
 
