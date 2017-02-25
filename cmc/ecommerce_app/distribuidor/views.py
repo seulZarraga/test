@@ -95,6 +95,7 @@ def edit_profile(request, user_id):
 
     return render_to_response('distr/edit_profile.html',
                               {'distribuidor': distribuidor,
+                               'pageType': 'Edit Profile',
                                'states': states}, context)
 
 

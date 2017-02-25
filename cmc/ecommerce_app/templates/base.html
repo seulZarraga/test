@@ -125,15 +125,15 @@
 
                                 <a class="a-navbar" href="{% url 'products:search_products_user' user.pk %}">Productos<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                                 <ul class="dropdown-menu" >
-                                <li><a class="a-navbar" href="{% url 'products:search_products_user' user.pk %}?q=&hPP=8&idx={{ ALGOLIA_INDEX }}_Product&p=0&hFR%5Bcategory%5D%5B0%5D=GIRARCAMPS&is_v=1">GIRARCAMPS</a></li>
+                                <li><a class="a-navbar" href="{% url 'products:search_products_user' user.pk %}?q=&hPP=12&idx={{ ALGOLIA_INDEX }}_Product&p=0&dFR%5Bcategory%5D%5B0%5D=GIRARCAMPS&is_v=1">GIRARCAMPS</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a class="a-navbar" href="{% url 'products:search_products_user' user.pk %}?q=&hPP=8&idx={{ ALGOLIA_INDEX }}_Product&p=0&hFR%5Bcategory%5D%5B0%5D=HERBOMEX&is_v=1">HERBOMEX</a></li>
+                                <li><a class="a-navbar" href="{% url 'products:search_products_user' user.pk %}?q=&hPP=12&idx={{ ALGOLIA_INDEX }}_Product&p=0&dFR%5Bcategory%5D%5B0%5D=HERBOMEX&is_v=1">HERBOMEX</a></li>
                             {% else %}
                                 <a class="a-navbar" href="{% url 'products:search_products'%}">Productos<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                                 <ul class="dropdown-menu" >
-                                <li><a class="a-navbar" href="{% url 'products:search_products'%}?q=&hPP=8&idx={{ ALGOLIA_INDEX }}_Product&p=0&hFR%5Bcategory%5D%5B0%5D=GIRARCAMPS&is_v=1">GIRARCAMPS</a></li>
+                                <li><a class="a-navbar" href="{% url 'products:search_products'%}?q=&hPP=12&idx={{ ALGOLIA_INDEX }}_Product&p=0&dFR%5Bcategory%5D%5B0%5D=GIRARCAMPS&is_v=1">GIRARCAMPS</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a class="a-navbar" href="{% url 'products:search_products'%}?q=&hPP=8&idx={{ ALGOLIA_INDEX }}_Product&p=0&hFR%5Bcategory%5D%5B0%5D=HERBOMEX&is_v=1">HERBOMEX</a></li>
+                                <li><a class="a-navbar" href="{% url 'products:search_products'%}?q=&hPP=12&idx={{ ALGOLIA_INDEX }}_Product&p=0&dFR%5Bcategory%5D%5B0%5D=HERBOMEX&is_v=1">HERBOMEX</a></li>
                             {% endif %}
                                 
 
@@ -359,10 +359,6 @@
         var video_url = '{{ video.video_url }}';
     </script>
     <script src="{% static 'js/video_page.js' %}"></script>
-    {% elif 'Product Page' in pageType %}
-    <script src="{% static 'js/interact.min.js' %}"></script>
-    <script src="{% static 'js/product.js' %}"></script>
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57e01de7ba51378b"></script>
     {% elif 'Cart Page' in pageType %}
     <script src="{% static 'js/cart.js' %}"></script>
     {% elif 'Checkout Page' in pageType %}
