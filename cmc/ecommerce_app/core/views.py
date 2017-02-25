@@ -26,6 +26,7 @@ from django.utils.http import urlsafe_base64_decode
 from django.utils.translation import ugettext as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.http import require_POST, require_GET
 from django.conf import settings
@@ -164,7 +165,7 @@ def search(request, **kwargs):
                                          'Page'}, context_instance=RequestContext(request))
 
 
-@csrf_protect
+@ensure_csrf_cookie
 def register(request):
     context = RequestContext(request)
 
@@ -238,7 +239,7 @@ def register(request):
     )
 
 
-@csrf_protect
+@ensure_csrf_cookie
 def user_login(request):
     context = RequestContext(request)
 
