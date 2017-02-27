@@ -318,10 +318,6 @@ $('.upload').on('change', function(){
 
 if ($('#description').length > 0) {
     
-    CKEDITOR.replace( 'description' , {
-        uiColor: '#FFFFFF',
-        language: 'es',
-        height: '400px'
-    });
+   tinymce.init({ selector:'#description' });
     
   }
