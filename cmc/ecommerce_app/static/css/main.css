@@ -1108,6 +1108,15 @@ font-size: 20px;
     background-color: #dbeff8;
 }
 
+.border-frame {
+    border: 2px solid #ddd !important;
+    padding: 1em !important;
+}
+
+.tabs-margin {
+    margin-top: 1em !important;
+}
+
 /*==================================================
 =            Bootstrap 3 Media Queries             =
 ==================================================*/
