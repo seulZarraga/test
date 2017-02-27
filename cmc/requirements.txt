@@ -6,7 +6,7 @@ algoliasearch==1.8.0
 algoliasearch-django==1.2.4
 boto==2.43.0
 cffi==1.7.0
-
+django-ckeditor==5.2.1
 cryptography==1.4
 dj-database-url==0.4.1
 django-autoslug==1.9.3

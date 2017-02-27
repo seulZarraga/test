@@ -43,6 +43,8 @@ from django.template import Context
 import cStringIO as StringIO
 from xhtml2pdf import pisa
 from cgi import escape
+from django.contrib.auth.decorators import user_passes_test
+from products.forms import ProductForm
 
 
 def home(request):
@@ -93,7 +95,7 @@ def send_contact_email(request):
                               context)
 
 
-@staff_member_required
+@user_passes_test(lambda u: u.is_superuser)
 def batch_upload(request):
 
     file = request.FILES['file']
@@ -135,6 +137,113 @@ def batch_upload(request):
         product.create_slug
         product.save()
 
+    return HttpResponseRedirect(reverse("admin:index"))
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def display_products(request):
+    context = RequestContext(request)
+    if request.user.is_authenticated():
+        user = CustomUser.objects.get(pk=request.user.pk)
+        if not user.is_staff:
+            return HttpResponseRedirect(reverse('logout'))
+    herbomex = Product.objects.filter(category__name='HERBOMEX').order_by('product_name')
+    girarcamps = Product.objects.filter(category__name='GIRARCAMPS').order_by('product_name')
+    products = Product.objects.all()
+    categories = Category.objects.all()
+    return render_to_response('products/products_admin.html',
+                              {'herbomex': herbomex,
+                               'products': products,
+                               'categories': categories,
+                               'pageType': 'Products Admin',
+                               'girarcamps': girarcamps}, context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def add_product(request):
+    context = RequestContext(request)
+    if request.user.is_authenticated():
+        user = CustomUser.objects.get(pk=request.user.pk)
+        if not user.is_staff:
+            return HttpResponseRedirect(reverse('logout'))
+
+    if request.method == 'POST':
+        product_form = ProductForm(request.POST, request.FILES, instance=Product())
+        if product_form.is_valid():
+            product = Product.objects.create(
+                product_name=product_form.cleaned_data['product_name'],
+                public_price=product_form.cleaned_data['public_price'],
+                low_distr_price=product_form.cleaned_data['low_distr_price'],
+                med_distr_price=product_form.cleaned_data['med_distr_price'],
+                high_distr_price=product_form.cleaned_data['high_distr_price'],
+                description=product_form.cleaned_data['description'],
+                category=Category.objects.get(pk=product_form.data.get('category')),
+                sku=product_form.cleaned_data['sku'],
+                buy_link=product_form.cleaned_data['buy_link'])
+
+            try:
+                product.image = request.FILES['image']
+            except Exception as e:
+                print e
+                print type(e)
+                print e.args
+
+            product.create_slug
+            product.save()
+
+            return HttpResponseRedirect(reverse('display_products'))
+        else:
+            print product_form.errors
+
+    categories = Category.objects.all()
+
+    return render_to_response('products/add_edit_product.html',
+                              {'categories': categories,
+                               'pageType': 'Add Product'}, context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def edit_product(request, product_id):
+    context = RequestContext(request)
+    product = get_object_or_404(Product, pk=product_id)
+    if request.user.is_authenticated():
+        user = CustomUser.objects.get(pk=request.user.pk)
+        if not user.is_staff:
+            return HttpResponseRedirect(reverse('logout'))
+
+    if request.method == 'POST':
+        product_form = ProductForm(request.POST, request.FILES, instance=Product())
+
+        if product_form.is_valid():
+
+            product.product_name = product_form.cleaned_data['product_name']
+            product.public_price = product_form.cleaned_data['public_price']
+            product.low_distr_price = product_form.cleaned_data['low_distr_price']
+            product.med_distr_price = product_form.cleaned_data['med_distr_price']
+            product.high_distr_price = product_form.cleaned_data['high_distr_price']
+            product.description = product_form.cleaned_data['description']
+            product.category = Category.objects.get(pk=product_form.data.get('category'))
+            product.sku = product_form.cleaned_data['sku']
+            product.buy_link = product_form.cleaned_data['buy_link']
+
+            if 'image' in request.FILES:
+                product.image = request.FILES['image']
+            product.create_slug
+            product.save()
+            return HttpResponseRedirect(reverse('display_products'))
+        else:
+            print product_form.errors
+
+    categories = Category.objects.all()
+
+    return render_to_response('products/add_edit_product.html',
+                              {'categories': categories,
+                               'product': product,
+                               'pageType': 'Edit Product'}, context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def volver_admin(request):
     return HttpResponseRedirect(reverse("admin:index"))
 
 

@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block title %} Profile {% endblock %}
+
+{% block body_block %}
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-md-10 col-md-offset-1">
+			{% if product %}
+			<form role="form" id="product_create_form" method="post" action="#" enctype="multipart/form-data" autocomplete="off">
+				<h3><small>Edici&oacute;n del Producto:</small> {{product.product_name}}</h3>
+                <hr class="colorgraph">
+            {% else %}
+            <form role="form" id="product_create_form" method="post" action="{% url 'add_product' %}" enctype="multipart/form-data" autocomplete="off">
+
+	            <h3><small>Nuevo Producto</small></h3>
+	            <hr class="colorgraph">
+			{% endif %}
+			{% csrf_token %}
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-4">
+						<div class="form-group">
+	                        {{proyecto_form.product_name.errors}}
+	                        <label>Nombre del Producto:<span class="campo_obligatorio_alert">*</span></label>
+	                        <input type="text" name="product_name" id="product_name" class="form-control input-lg" tabindex="1" maxlength="50" value="{{product.product_name}}">
+	                    </div>
+	                </div>
+	                <div class="col-xs-12 col-sm-6 col-md-4">
+	                    <div class="form-group">
+	                        {{proyecto_form.sku.errors}}
+	                        <label>SKU:<span class="campo_obligatorio_alert">*</span></label>
+	                        <input type="text" name="sku" id="sku" class="form-control input-lg" tabindex="2" maxlength="100" value="{{product.sku}}">
+	                    </div>
+	                </div>
+	                <div class="col-xs-12 col-sm-6 col-md-4">
+						<div class="form-group">
+	                        {{proyecto_form.buy_link.errors}}
+	                        <label>Link de compra:<span class="campo_obligatorio_alert">*</span></label>
+	                        <input type="text" name="buy_link" id="buy_link" class="form-control input-lg" tabindex="3" maxlength="255" value="{{product.buy_link}}">
+	                    </div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-3">
+						<div class="form-group">
+	                        {{proyecto_form.public_price.errors}}
+	                        <label>Precio al publico:<span class="campo_obligatorio_alert">*</span></label>
+	                        <input type="text" name="public_price" id="public_price" class="form-control input-lg" tabindex="4" value="{{product.public_price}}">
+	                    </div>
+	                </div>
+	                <div class="col-xs-12 col-sm-6 col-md-3">
+	                    <div class="form-group">
+	                        {{proyecto_form.low_distr_price.errors}}
+	                        <label>Precio distr bajo:<span class="campo_obligatorio_alert">*</span></label>
+	                        <input type="text" name="low_distr_price" id="low_distr_price" class="form-control input-lg" tabindex="5" value="{{product.low_distr_price}}">
+	                    </div>
+	                </div>
+	                <div class="col-xs-12 col-sm-6 col-md-3">
+						<div class="form-group">
+	                        {{proyecto_form.med_distr_price.errors}}
+	                        <label>Precio distr medio:<span class="campo_obligatorio_alert">*</span></label>
+	                        <input type="text" name="med_distr_price" id="med_distr_price" class="form-control input-lg" tabindex="6" value="{{product.med_distr_price}}">
+	                    </div>
+	                </div>
+	                <div class="col-xs-12 col-sm-6 col-md-3">
+	                    <div class="form-group">
+	                        {{proyecto_form.high_distr_price.errors}}
+	                        <label>Precio distr alto:<span class="campo_obligatorio_alert">*</span></label>
+	                        <input type="text" name="high_distr_price" id="high_distr_price" class="form-control input-lg" tabindex="6" value="{{product.high_distr_price}}">
+	                    </div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+	                    	<label>Categor&iacute;a:<span class="campo_obligatorio_alert">*</span></label>
+	                    
+		                    <select id="category" name="category" class="form-control select select-primary select-block mbl" tabindex="7">
+		                            {% for category in categories %}
+		                            <option value="{{category.pk}}" {%if category == product.category %} selected {% endif %}>{{category}}</option>
+		                            {% endfor %}
+		                    </select>
+	                	</div>
+	                </div>
+	                <div class="col-xs-12 col-sm-6 col-md-6">
+	                    <div class="form-group">
+		                    <label>Imagen:<span style="color: red;">*</span></label>
+		                    {% if product.image %}
+		                        <input id="image" name="image" type="text" placeholder="Choose File" disabled="disabled" value="{{product.image.url}}"/>
+		                    {% else %}
+		                        <input id="image" name="image" type="text" placeholder="Choose File" disabled="disabled"/>
+		                    {% endif %}
+	                        
+	                        <div class="fileUpload btn btn-primary">
+	                            <span>Subir</span>
+	                            <input id="image" type="file" class="upload" name="image" />
+	                        </div>
+	                	</div>
+					</div>
+				</div>
+				<div class="row">
+	                <div class="col-xs-12 col-sm-12 col-md-12">
+	                    <div class="form-group">
+	                        {{organizacion_form.description.errors}}
+	                        <label>Descripci&oacute;n:<span class="campo_obligatorio_alert">*</span></label>
+	                        <textarea class="form-control input-lg" id="description" name="description" tabindex="9">{{product.description}}</textarea>
+	                            
+	                    </div>
+	                </div>
+	            </div>
+	            <hr class="colorgraph">
+	            <div class="row">
+	                <div class="col-xs-12 col-md-6"><a href="{% url 'display_products' %}" class="btn btn-danger btn-block" tabindex="10">Cancelar</a></div>
+	                <div class="col-xs-12 col-md-6"><input type="submit" value="Guardar" class="btn btn-success btn-block" tabindex="11"></div>
+	            </div>
+        	</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
