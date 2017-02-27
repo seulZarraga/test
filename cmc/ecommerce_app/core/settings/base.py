@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'products',
     'distribuidor',
     'localidad',
+    'ckeditor',
 ]
 
 MIDDLEWARE_CLASSES = [
