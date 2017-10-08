@@ -6,7 +6,8 @@ html, body{
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: 'Raleway', sans-serif;
+   
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 .wrapper {
@@ -1116,6 +1117,218 @@ font-size: 20px;
 .tabs-margin {
     margin-top: 1em !important;
 }
+
+/*==================================================
+=            NEW LANDING PAGES            =
+==================================================*/
+
+body > section{
+    clear: both;
+    padding: 50px 0;
+}
+/* colores */
+.verdbck{
+    background-color:#17c0a4; 
+}
+
+
+h1,h2,h3,h4,h4{
+    font-family: 'Roboto Condensed', sans-serif;
+}
+/*  menu */
+
+.navbar-default{
+    box-shadow: none;
+    background-color:transparent; 
+    border:none;
+    background-image: none;
+    min-height: 90px;
+    padding-top: 20px;
+}
+.nav>li>a{
+    text-transform: uppercase;
+        font-family: 'Roboto Condensed', sans-serif;
+        color: #fff;
+        font-size: 1.2em;
+        text-shadow: 1px 1px 1px black;
+        -webkit-text-shadow: 1px 1px 1px black;
+        -moz-text-shadow: 1px 1px 1px black;
+}
+.nav>li>a:hover,
+.nav>li>a:focus{
+    background-color:#129989; 
+}
+
+.efecto-menu
+    {
+        background-color:#14AD99;
+        min-height: 30px;
+        box-shadow: 0 0 10 black;
+        padding-top: 0; 
+        transition: .5s all ease;
+    }
+.normal-menu{
+   transition: .5s all ease;
+}
+/* vista buscar */
+div#vista-buscar{
+    color:white;
+    background:rgba(0,0,0,.8);
+    padding:2em;
+    height:auto;
+    overflow:hidden;
+}
+
+div#vista-buscar input{
+    width: 30%;
+    padding: .5em .5em;
+    border: 1px solid #17c0a4;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+    text-align:center;
+        font-family: 'Roboto Condensed', sans-serif;
+    color:#17c0a4;
+    margin-top:10px;
+}
+div#vista-buscar .submit{
+background-color: #17c0a4;
+color: white;
+
+}
+div#vista-buscar button{
+    background:black;
+    border:1px solid white;
+}
+.result-header-ite{
+    margin-top:10px;
+}
+.itemheader{
+
+    width:50%;
+    margin: 1em auto;
+    color:white;
+    padding:1em;
+    height:auto;
+    border-bottom:1px solid white;
+    overflow:hidden;
+}
+
+/* header */
+section#header{
+    min-height: 700px;
+    padding-top: 100px;
+
+background-image: url(../images/back-header.jpg);
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+}
+
+section#header img{
+margin: 0 auto;
+}
+
+section#header p{
+    font-size: 1.5em;
+    text-transform: none;
+    color: #fff;
+    font-weight: lighter;
+    line-height: 1.5em;
+    margin-top: 1em;
+
+}
+
+/* nosotros */
+h2.parallax{
+    font-size: 3.6em;
+    font-weight: 700;
+    text-transform: none;
+    color: #fff;
+    margin-bottom: 1em;
+}
+p.parallax{
+    font-size: 1.5em;
+    text-transform: none;
+    color: #fff;
+    font-weight: lighter;
+    line-height: 1.5em;
+
+}
+section#nosotros{
+height: 500px;
+background-image: url(../images/back-nosotros.jpg);
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+}
+
+/* contacto */
+
+section#contacto h2{
+    font-size: 3.6em;
+    font-weight: 700;
+    text-transform: none;
+    color: #17c0a4;
+    margin-bottom: 1em;
+}
+p.contacto{
+    font-size: 1.5em;
+    text-transform: none;
+    color: #3B3B3B;
+    font-weight: lighter;
+}
+
+section#contacto input,section#contacto textarea{
+    width: 99%;
+    padding: .5em;
+    border: 1px solid #17c0a4;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+}
+section#contacto .submit{
+background-color: #17c0a4;
+color: white;
+
+}
+
+
+
+@media only screen and (max-width: 767px) {
+
+    section#header{
+        height:auto;
+        min-height:initial;
+    }  
+    .navbar-default, .navbar-collapse{
+        background-color:#14AD99;
+        color:white !important;
+        min-height: 30px;
+    }
+    section#nosotros{
+        height:auto;
+        min-height:initial;
+        
+    }
+    
+    
+    /* buscar */
+    div#vista-buscar h2{
+font-size:16px;
+}
+    
+        div#vista-buscar input{
+        width: 90%;
+    }
+    
+}
+
+@media only screen and (max-width: 500px) {
+
+}
+
+
 
 /*==================================================
 =            Bootstrap 3 Media Queries             =

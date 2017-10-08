@@ -1,6 +1,25 @@
 /**
  * Created by Agustino on 12/05/16.
  */
+
+
+ smoothScroll.init();
+$(document).ready(function(){
+    var nav=$('.navbar-fixed-top');
+    $(window).scroll(function(){
+       var scroll=$(window).scrollTop();
+
+       if(scroll>=100){
+              nav.removeClass('normal-menu').addClass('efecto-menu');
+       }else{
+              nav.removeClass('efecto-menu').addClass('normal-menu');
+       }
+    });
+
+});
+
+
+
 $(function () {
 
     //AJAX config for using CSRF
@@ -321,3 +340,4 @@ if ($('#description').length > 0) {
    tinymce.init({ selector:'#description' });
     
   }
+

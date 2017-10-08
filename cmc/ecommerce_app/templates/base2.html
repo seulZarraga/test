@@ -20,7 +20,6 @@
     <link href="{% static 'css/select2.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/font-awesome-4.6.3/css/font-awesome.min.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
 
 
     {% if 'Catalog Page' in pageType %}
@@ -53,34 +52,54 @@
 
     <div class="wrapper">
 
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
 
-            <div class="container">
+        <div class="header">
 
-                <div class="navbar-header">
+            <div id="navtop">
+                <nav class="navbar navbar-default navbar-static-top custom-main-nav">
+                      <div class="container-fluid nav-header-small">
 
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle Nvigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div><!-- fin  navbar-header -->
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header ">
+                          <button style="display:none;" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                          </button>
+                          <a class="navbar-brand logo-home" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" height="95"> </a>
 
-                <div class="navbar-collapse collapse">
+                        </div>
 
-                    <ul class="nav nav-justified">
-                    <li><a data-scroll href="{% url 'home' %}#header">Inicio</a></li>
-                    <li><a data-scroll href="{% url 'home' %}#nosotros">Acerca de Nosotros</a></li>
-                    <li><a data-scroll href="#nosotros">Producto</a></li>
-                    {% if user.is_authenticated  %}
-                    <li><a data-scroll href="{% url 'products:search_products_user' user.pk %}">Catalogo</a></li>
-                    {% else %}
-                    <li><a data-scroll href="{% url 'products:search_products'%}">Catalogo</a></li>
-                    {% endif %}
-                    <li><a data-scroll href="{% url 'home' %}#contact">Contacto</a></li>
-                    {% if user.is_authenticated %}
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1" style="margin-top: 35px">
+
+                         <!--
+                          <div class="input-group navbar-form navbar-left">
+
+                              <input id="id_q" name="q" type="text" class="form-control search-input" placeholder="Search">
+                              <button type="submit" title="Search" class="button search-button" onclick="this.form.submit()"><i class="fa fa-search"></i></button>
+                          </div>
+                          -->
+
+                          <ul class="nav navbar-nav navbar-right">
+                            <li>
+
+                                <div id="custom-search-input">
+                                  <div class="input-group">
+
+                                      <input id="id_q"  name="q" type="text" class="form-control search-input id_q" placeholder="Search">
+                                      <span class="input-group-btn">
+                                        <button id="search_btn" type="submit" title="Search" class="btn btn-info btn-lg"><i class="fa fa-search"></i></button>
+                                      </span>
+                                  </div>
+                                  <div class="queries"></div>
+                              </div>
+                              
+
+                            </li>
+                            {% if user.is_authenticated %}
                             <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bienvenido {{ user.first_name }} <span class="caret"></span></a>
                               <ul class="dropdown-menu">
@@ -92,38 +111,54 @@
                             {% else %}
                             <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
                             {% endif %}
-                    <li><a href="#modal" data-toggle="modal"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
+                          </ul>
+                        </div><!-- /.navbar-collapse -->
+                      </div><!-- /.container-fluid -->
+                </nav>
 
-                    </ul>
-                </div>
-            </div> <!-- fin container -->
+                <!-- END Navbar -->
+            </div>
+            <!-- subnav here -->
+            <div class="navbar subnav hidden-xs sub-barra" role="navigation">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <ul class="list-inline subnav-pager pull-right">
 
-        
+                            <li><a class="a-navbar" href="{% url 'home' %}">Inicio</a></li>
+                            <li class="dropdown">
+                            {% if user.is_authenticated  %}
 
-        </div>
-        <!-- Modal -->
-        <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledy="modal" aria-hidden=true>
+                                <a class="a-navbar" href="{% url 'products:search_products_user' user.pk %}">Productos<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                                <ul class="dropdown-menu" >
+                                <li><a class="a-navbar" href="{% url 'products:search_products_user' user.pk %}?q=&hPP=12&idx={{ ALGOLIA_INDEX }}_Product&p=0&dFR%5Bcategory%5D%5B0%5D=GIRARCAMPS&is_v=1">GIRARCAMPS</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a class="a-navbar" href="{% url 'products:search_products_user' user.pk %}?q=&hPP=12&idx={{ ALGOLIA_INDEX }}_Product&p=0&dFR%5Bcategory%5D%5B0%5D=HERBOMEX&is_v=1">HERBOMEX</a></li>
+                            {% else %}
+                                <a class="a-navbar" href="{% url 'products:search_products'%}">Productos<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                                <ul class="dropdown-menu" >
+                                <li><a class="a-navbar" href="{% url 'products:search_products'%}?q=&hPP=12&idx={{ ALGOLIA_INDEX }}_Product&p=0&dFR%5Bcategory%5D%5B0%5D=GIRARCAMPS&is_v=1">GIRARCAMPS</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a class="a-navbar" href="{% url 'products:search_products'%}?q=&hPP=12&idx={{ ALGOLIA_INDEX }}_Product&p=0&dFR%5Bcategory%5D%5B0%5D=HERBOMEX&is_v=1">HERBOMEX</a></li>
+                            {% endif %}
+                                
 
-            <div class="modal-body ">
-                <div class="container-fluid text-center">
-                    <div id="vista-buscar">
-                        <button class="btn" data-dismiss="modal" aria-hidden="true">
-                            cerrar
-                        </button>
-                        <h2>
-                            En este formulario podras buscar mas rapido tus productos
-                        </h2>
-                        <form>
-                            <input id="id_q"  name="q" type="text" placeholder="Buscar Producto"></br>
-                            <input  type="submit" class="submit" value="Buscar">
-                        </form>
-                
-                        
-                        <div class="queries"></div>
+                              </ul>
+                            </li>
+                      
+                            <li><a class="a-navbar" href="{% url 'login' %}">Ser distribuidor</a></li>
+                            <li><a class="a-navbar" href="{% url 'home' %}#contact">Contacto</a></li>
+
+
+                        </ul>
+
+
+
+
                     </div>
                 </div>
             </div>
-            
+            <!-- END subnav -->
+
         </div>
 
         <!-- Accordion Menu -->
@@ -267,7 +302,6 @@
 
 
         <!--fin  container catalaogo-camione -->
-        <!--footer -->
 <div id="footer-total" class="hidden-xs">
     <div class="footer-web">
         <div class="container">
@@ -311,11 +345,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
-
-    <script src="{% static 'js/smooth-scroll.js' %}"></script>
-
-    <script src="{% static 'js/waypoints.js' %}"></script>
     <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
     <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
     <script src="{% static 'js/autocomplete.js' %}"></script>
@@ -477,7 +506,6 @@
 
     {% endif %}
 
-    
 
   </body>
 

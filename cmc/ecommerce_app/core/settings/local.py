@@ -14,7 +14,7 @@ import getpass
 from .base import *
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SENDGRID_API_KEY')
+SECRET_KEY = '8lu*6g0lg)9z!ba+a$ehk)xt)x%rxgb$i1&amp;022shmi1jcgihb*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -48,8 +48,8 @@ DATABASES = {
 }
 
 ALGOLIA = {
-    'APPLICATION_ID': os.environ.get('APPLICATION_ID'),
-    'API_KEY': os.environ.get('API_KEY'),
+    'APPLICATION_ID': 'CIOFIUHQVQ',
+    'API_KEY': '0a64dadab47281bc86f846551a9e4284',
     'INDEX_PREFIX': 'local_' + getpass.getuser(),
-    'SEARCH_KEY': os.environ.get('SEARCH_KEY'),
+    'SEARCH_KEY': '6d2b7726c13f6a39a64f576047edae70',
 }
